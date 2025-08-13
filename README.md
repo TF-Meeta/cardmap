@@ -1,24 +1,18 @@
-# README
+User（ユーザー）
+ ├─ has_many :stores
+ ├─ has_many :cards
+ └─ has_many :prices
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Store（カードショップ実店舗）
+ ├─ belongs_to :user（登録者）
+ ├─ has_many :prices
+ └─ has_many :cards, through: :prices
 
-Things you may want to cover:
+Card（カード情報）
+ ├─ has_many :prices
+ └─ has_many :stores, through: :prices
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Price（価格情報・中間テーブル）
+ ├─ belongs_to :store
+ ├─ belongs_to :card
+ └─ price, date, conditionなどの情報を持つ

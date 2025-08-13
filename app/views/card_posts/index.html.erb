@@ -1,0 +1,14 @@
+<h1>カード投稿一覧</h1>
+
+<%= link_to "新規投稿", new_card_post_path, class: "btn" %>
+
+<% @card_posts.each do |post| %>
+  <div class="card-post">
+    <h2><%= link_to post.card_name, card_post_path(post) %></h2>
+    <p>店舗: <%= post.store_name %></p>
+    <p>価格: <%= post.price %>円</p>
+    <% if post.image.attached? %>
+      <%= image_tag post.image.variant(resize_to_limit: [200, 200]) %>
+    <% end %>
+  </div>
+<% end %>

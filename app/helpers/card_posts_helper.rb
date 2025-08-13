@@ -1,0 +1,2 @@
+module CardPostsHelper
+end

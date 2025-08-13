@@ -1,0 +1,11 @@
+<h1><%= @card_post.card_name %></h1>
+
+<p>店舗: <%= @card_post.store_name %></p>
+<p>価格: <%= @card_post.price %>円</p>
+<p>メモ: <%= @card_post.memo %></p>
+
+<% if @card_post.image.attached? %>
+  <%= image_tag @card_post.image.variant(resize_to_limit: [400, 400]) %>
+<% end %>
+
+<%= link_to "一覧に戻る", card_posts_path, class: "btn btn-secondary" %>
