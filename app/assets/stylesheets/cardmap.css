@@ -1,4 +1,4 @@
-/* --- 全体 --- */
+ /* --- 全体 --- */
 body {
   background-color: #1a202c;
   color: #e2e8f0;
@@ -148,4 +148,39 @@ h1 {
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+}
+
+/* --- ヘッダー --- */
+.site-header {
+  background-color: #2d3748;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #63b3ed;
+  text-decoration: none;
+}
+
+.site-header .nav-link {
+  margin-left: 1rem;
+  color: #e2e8f0;
+  text-decoration: none;
+}
+
+.site-header .nav-link:hover {
+  color: #4299e1;
+}
+
+/* --- フッター --- */
+.site-footer {
+  background-color: #2d3748;
+  color: #a0aec0;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
 }
