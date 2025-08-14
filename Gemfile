@@ -69,3 +69,6 @@ gem 'geocoder'                  # 住所→緯度経度変換
 gem 'jquery-rails'              # jQueryサポート
 gem "image_processing", "~> 1.2"
 
+group :production do
+  gem 'pg'
+end
