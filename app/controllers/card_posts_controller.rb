@@ -26,13 +26,32 @@ class CardPostsController < ApplicationController
   def edit
   end
 
-  def update
-    if @card_post.update(card_post_params)
-      redirect_to @card_post, notice: "投稿を更新しました。"
-    else
-      render :edit
+  def toggle_checked
+    @card_post = CardPost.find(params[:id])
+    if current_user == @card_post.user
+      @card_post.update(checked_by_owner: !@card_post.checked_by_owner)
+    end
+
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("check_frame_#{@card_post.id}", partial: "card_posts/check_form", locals: { post: @card_post }) }
+      format.html { redirect_back fallback_location: root_path }
     end
   end
+
+
+
+  def update
+    if current_user == @card_post.user
+      if @card_post.update(card_post_params)
+        redirect_to @card_post, notice: "更新しました"
+      else
+        render :edit
+      end
+    else
+      redirect_to @card_post, alert: "権限がありません"
+    end
+  end
+
 
   def destroy
     @card_post.destroy

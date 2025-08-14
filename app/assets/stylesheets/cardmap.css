@@ -361,3 +361,47 @@ h1 {
 .btn-delete:hover {
   color: #ff0000;
 }
+
+/* 入手済みラベル */
+.checked-label {
+  color: #dae2dd;
+  font-weight: bold;
+  margin-left: 1rem;
+  font-size: 1rem;
+}
+
+/* 投稿者用チェックボックス */
+.card-post-detail input[type="checkbox"] {
+  margin-left: 1rem;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+/* 投稿一覧のチェックボックス */
+.inline-form {
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.checked-label {
+  color: #48bb78;
+  font-weight: bold;
+  margin-left: 1rem;
+  font-size: 1rem;
+}
+
+.inline-form input[type="checkbox"] {
+  transform: scale(1.2);
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+/* --- フッター --- */
+.site-footer {
+  background-color: #2d3748; /* 既存の背景色に合わせる */
+  color: #fff;              /* 文字色を白に統一 */
+  text-align: center;       /* 中央揃え */
+  padding: 1rem;            /* 上下の余白 */
+  margin-top: 2rem;         /* ページ下との余白 */
+  font-size: 0.875rem;      /* 少し小さめの文字サイズ */
+}

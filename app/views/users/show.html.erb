@@ -10,6 +10,8 @@
           <h2><%= link_to post.card_name, card_post_path(post) %></h2>
           <p>店舗: <%= post.store_name %></p>
           <p>価格: <%= post.price %>円</p>
+          <p>メモ: <%= post.memo %></p>
+        <p class="post-date">投稿日: <%= post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
 
           <%# 編集・削除ボタンは自分の投稿だけ表示 %>
           <% if @user == post.user %>

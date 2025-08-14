@@ -4,4 +4,5 @@ class CardPost < ApplicationRecord
 
   validates :store_name, :card_name, :price, presence: true
   validates :price, numericality: { only_integer: true, greater_than: 0 }
+  scope :checked_by_owner, -> { where(checked_by_owner: true) }
 end

@@ -68,3 +68,4 @@ gem 'geocoder'                  # 住所→緯度経度変換
 # gem 'bootstrap', '~> 5.2'       # CSS framework
 gem 'jquery-rails'              # jQueryサポート
 gem "image_processing", "~> 1.2"
+

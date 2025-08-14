@@ -6,11 +6,28 @@
   <div class="card-post">
     <div class="card-post-content">
       <div class="card-post-text">
-        <h2><%= link_to post.card_name, card_post_path(post) %></h2>
+        <h2>
+          <%= link_to post.card_name, card_post_path(post) %>
+          <% if current_user == post.user %>
+            <%= turbo_frame_tag "check_frame_#{post.id}" do %>
+              <%= form_with(model: post, url: toggle_checked_card_post_path(post), method: :patch, data: { turbo_frame: "check_frame_#{post.id}" }, class: "inline-form") do |f| %>
+                <%= f.check_box :checked_by_owner, { checked: post.checked_by_owner, onchange: 'this.form.submit();' } %>
+                <%= f.label :checked_by_owner, "入手済み" %>
+              <% end %>
+            <% end %>
+          <% elsif post.checked_by_owner %>
+            <span class="checked-label">✅ 入手済み</span>
+          <% end %>
+
+        </h2>
+
         <p>店舗: <%= post.store_name %></p>
         <p>価格: <%= post.price %>円</p>
+        <p>メモ: <%= post.memo %></p>
+        <p class="post-date">投稿日: <%= post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
 
-        <%# 編集・削除ボタンを使う場合は以下のdivで右寄せ %>
+
+
         <% if defined?(@user) && @user == post.user %>
           <div class="card-post-actions">
             <%= link_to "編集", edit_card_post_path(post), class: "btn" %>

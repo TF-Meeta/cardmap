@@ -1,15 +1,28 @@
-<div class="card-post-detail">
-  <h1><%= @card_post.card_name %></h1>
+<h1>
+  <%= @card_post.card_name %>
 
-  <p>店舗: <%= @card_post.store_name %></p>
-  <p>価格: <%= @card_post.price %>円</p>
-  <p>メモ: <%= @card_post.memo %></p>
-
-  <% if @card_post.image.attached? %>
-    <div class="card-post-image">
-      <%= image_tag @card_post.image.variant(resize_to_limit: [300, 300]) %>
-    </div>
+  <% if current_user == @card_post.user %>
+    <%= turbo_frame_tag "check_frame_#{@card_post.id}" do %>
+      <%= form_with(model: @card_post, url: toggle_checked_card_post_path(@card_post), method: :patch, data: { turbo_frame: "check_frame_#{@card_post.id}" }, class: "inline-form") do |f| %>
+        <%= f.check_box :checked_by_owner, { checked: @card_post.checked_by_owner, onchange: 'this.form.submit();' } %>
+        <%#= f.label :checked_by_owner %>
+      <% end %>
+    <% end %>
+  <% elsif @card_post.checked_by_owner %>
+    <span class="checked-label">✅ 入手済み </span>
   <% end %>
+</h1>
+
+<p>店舗: <%= @card_post.store_name %></p>
+<p>価格: <%= @card_post.price %>円</p>
+<p>メモ: <%= @card_post.memo %></p>
+<p class="post-date">投稿日: <%= @card_post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+<% if @card_post.image.attached? %>
+  <div class="card-post-image">
+    <%= image_tag @card_post.image.variant(resize_to_limit: [300, 300]) %>
+  </div>
+<% end %>
+
 
   <div class="card-post-actions">
     <%= link_to "一覧に戻る", card_posts_path, class: "btn" %>
@@ -18,10 +31,9 @@
     <% if current_user == @card_post.user %>
       <%= link_to "編集", edit_card_post_path(@card_post), class: "btn" %>
 
-      <%= button_to "削除", card_post_path(@card_post),
+      <%#= button_to "削除", card_post_path(@card_post),
               method: :delete,
-              form: { class: "inline" },
-              class: "btn btn-delete",
+              class: "btn,btn-delete inline-form",
               data: { confirm: "本当に削除しますか？" } %>
     <% end %>
 
