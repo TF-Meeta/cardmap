@@ -1,14 +1,31 @@
 <h1>カード投稿一覧</h1>
 
-<%= link_to "新規投稿", new_card_post_path, class: "btn" %>
+<%= link_to "新規投稿", new_card_post_path, class: "btn new-post-btn" %>
 
 <% @card_posts.each do |post| %>
   <div class="card-post">
-    <h2><%= link_to post.card_name, card_post_path(post) %></h2>
-    <p>店舗: <%= post.store_name %></p>
-    <p>価格: <%= post.price %>円</p>
-    <% if post.image.attached? %>
-      <%= image_tag post.image.variant(resize_to_limit: [200, 200]) %>
-    <% end %>
+    <div class="card-post-content">
+      <div class="card-post-text">
+        <h2><%= link_to post.card_name, card_post_path(post) %></h2>
+        <p>店舗: <%= post.store_name %></p>
+        <p>価格: <%= post.price %>円</p>
+
+        <%# 編集・削除ボタンを使う場合は以下のdivで右寄せ %>
+        <% if defined?(@user) && @user == post.user %>
+          <div class="card-post-actions">
+            <%= link_to "編集", edit_card_post_path(post), class: "btn" %>
+            <%= link_to "削除", card_post_path(post),
+              data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },
+              class: "btn" %>
+          </div>
+        <% end %>
+      </div>
+
+      <% if post.image.attached? %>
+        <div class="card-post-image">
+          <%= image_tag post.image.variant(resize_to_limit: [200, 200]) %>
+        </div>
+      <% end %>
+    </div>
   </div>
 <% end %>

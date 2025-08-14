@@ -1,4 +1,4 @@
- /* --- 全体 --- */
+/* --- 基本のページスタイル --- */
 body {
   background-color: #1a202c;
   color: #e2e8f0;
@@ -11,29 +11,111 @@ h1 {
   text-align: center;
   font-size: 2.5rem;
   font-weight: bold;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
   background-image: linear-gradient(to right, #4299e1, #9f7aea);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* --- 投稿カード --- */
+/* --- ヘッダー --- */
+.header {
+  background-color: #2d3748;
+  padding: 1rem;
+  color: #fff;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #4299e1;
+}
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+.nav-link,
+.nav-link.btn-logout {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #4a5568;
+  cursor: pointer;
+  border: none;
+  font: inherit;
+}
+.nav-link:hover,
+.nav-link.btn-logout:hover {
+  text-decoration: underline;
+}
+
+/* --- フッター --- */
+.footer {
+  background-color: #2d3748;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+/* --- 新規投稿ボタン --- */
+.new-post-btn {
+  display: block;
+  width: 200px;
+  margin: 0 auto 2rem;
+  text-align: center;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  background-image: linear-gradient(to right, #48bb78, #68d391);
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.new-post-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* --- カード投稿一覧 --- */
 .card-post {
   background-color: #2d3748;
   border-radius: 1rem;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid #4a5568;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .card-post:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+              0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
-
+.card-post-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .card-post-content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.card-post-text {
+  flex-grow: 1;
+}
 .card-post h2 a {
   font-size: 1.5rem;
   font-weight: 600;
@@ -41,34 +123,112 @@ h1 {
   text-decoration: none;
   transition: color 0.3s ease;
 }
-
 .card-post h2 a:hover {
   color: #4299e1;
 }
-
 .card-post p {
   font-size: 1rem;
   color: #a0aec0;
   margin-top: 0.5rem;
 }
 
-.card-post img {
-  border-radius: 0.5rem;
-  margin-top: 1rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  max-width: 100%;
-  height: auto;
-}
-
-/* --- フォーム全体 --- */
-.card-form-container {
-  max-width: 600px;
-  margin: 2rem auto;
+/* --- 投稿詳細コンテナ --- */
+.card-post-detail {
+  max-width: 800px;
+  margin: 0 auto;
   padding: 2rem;
   background-color: #2d3748;
   border-radius: 1rem;
-  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
   border: 1px solid #4a5568;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+              0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.card-post-detail p {
+  font-size: 1.125rem;
+  color: #a0aec0;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+.card-post-detail p:first-of-type {
+  margin-top: 1.5rem;
+}
+.card-post-detail .card-post-image {
+  text-align: center;
+  margin: 2rem 0;
+}
+.card-post-detail .card-post-image img {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  max-width: 100%;
+  height: auto;
+}
+.card-post-detail .card-post-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.card-post-detail .btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+}
+.card-post-detail .btn:nth-child(1) { background-color: #4a5568; }
+.card-post-detail .btn:nth-child(1):hover { background-color: #2d3748; }
+.card-post-detail .btn:nth-child(2) { background-color: #63b3ed; }
+.card-post-detail .btn:nth-child(2):hover { background-color: #4299e1; }
+.card-post-detail .btn:nth-child(3) { background-color: #e53e3e; }
+.card-post-detail .btn:nth-child(3):hover { background-color: #c53030; }
+
+/* --- カード投稿アクションボタン一覧 --- */
+.card-post-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+.card-post-actions .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+.card-post-actions .btn:first-child { background-color: #63b3ed; }
+.card-post-actions .btn:first-child:hover { background-color: #4299e1; }
+.card-post-actions .btn:last-child { background-color: #e53e3e; }
+.card-post-actions .btn:last-child:hover { background-color: #c53030; }
+
+/* --- 画像コンテナ --- */
+.card-post-image {
+  flex-shrink: 0;
+  width: 200px;
+  height: 200px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.card-post-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- フォーム全体のコンテナ --- */
+.card-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #2d3748;
+  border-radius: 1rem;
+  border: 1px solid #4a5568;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+              0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* --- エラーメッセージ --- */
@@ -79,26 +239,40 @@ h1 {
   padding: 1rem;
   margin-bottom: 1.5rem;
 }
-
+.error-messages h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
 .error-messages ul {
   list-style-type: disc;
   list-style-position: inside;
   padding-left: 1rem;
 }
 
-/* --- フォームグループ --- */
+/* --- 各フォームグループ --- */
 .form-group {
   margin-bottom: 1.5rem;
 }
-
-.form-group label {
-  display: block;
+.form-text-wrap {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.form-text {
   font-size: 1rem;
   font-weight: 600;
   color: #a0aec0;
-  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
 }
-
+.indispensable {
+  font-size: 0.75rem;
+  color: #e53e3e;
+  background-color: #fed7d7;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+}
+.form-control,
 .form-group input[type="text"],
 .form-group input[type="number"],
 .form-group textarea {
@@ -111,27 +285,27 @@ h1 {
   color: #e2e8f0;
   transition: all 0.3s ease;
 }
-
+.form-control::placeholder,
 .form-group input::placeholder,
 .form-group textarea::placeholder {
   color: #718096;
 }
-
+.form-control:focus,
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
   border-color: #63b3ed;
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.5);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
 }
-
 .form-group input[type="file"] {
   width: 100%;
   padding: 0.75rem 0;
   color: #a0aec0;
 }
 
-/* --- ボタン --- */
-.btn {
+/* --- ボタン共通 --- */
+.btn,
+.btn.btn-primary {
   display: block;
   width: 100%;
   padding: 1rem;
@@ -142,45 +316,48 @@ h1 {
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
+  text-decoration: none;
+  text-align: center;
   transition: all 0.3s ease;
 }
-
-.btn:hover {
+.btn:hover,
+.btn.btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-/* --- ヘッダー --- */
-.site-header {
-  background-color: #2d3748;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* --- devise/shared/links のスタイル --- */
+.devise-links {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
 }
-
-.site-header .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+.devise-links a {
   color: #63b3ed;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
-
-.site-header .nav-link {
-  margin-left: 1rem;
-  color: #e2e8f0;
-  text-decoration: none;
-}
-
-.site-header .nav-link:hover {
+.devise-links a:hover {
   color: #4299e1;
+  text-decoration: underline;
 }
 
-/* --- フッター --- */
-.site-footer {
-  background-color: #2d3748;
-  color: #a0aec0;
-  text-align: center;
-  padding: 1rem;
-  margin-top: 2rem;
+/* --- ボタン風リンク用 --- */
+.inline {
+  display: inline;
+}
+.nav-link.btn-logout,
+.btn-delete {
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.nav-link.btn-logout:hover,
+.btn-delete:hover {
+  color: #ff0000;
 }

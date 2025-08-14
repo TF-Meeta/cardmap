@@ -1,0 +1,38 @@
+<h1>ログイン</h1>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <% if resource.errors.any? %>
+    <div class="error-messages">
+      <ul>
+        <% resource.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%# --- 入力項目共通レイアウト --- %>
+  <% [:email, :password].each do |attr| %>
+    <div class="form-group">
+      <div class="form-text-wrap">
+        <% label_text = case attr
+                        when :email then "メールアドレス"
+                        when :password then "パスワード"
+                        end %>
+        <%= f.label attr, label_text, class: "form-text" %>
+        <span class="indispensable">必須</span>
+      </div>
+
+      <%# フィールドタイプを分岐 %>
+      <% if attr == :password %>
+        <%= f.password_field attr, autocomplete: "current-password", placeholder: "6文字以上", class: "form-control" %>
+      <% else %>
+        <%= f.email_field attr, autocomplete: "email", placeholder: "example@example.com", class: "form-control" %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= f.submit "ログイン", class: "btn" %>
+<% end %>
+
+<%= render "devise/shared/links" %>

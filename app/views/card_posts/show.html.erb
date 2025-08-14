@@ -1,11 +1,29 @@
-<h1><%= @card_post.card_name %></h1>
+<div class="card-post-detail">
+  <h1><%= @card_post.card_name %></h1>
 
-<p>店舗: <%= @card_post.store_name %></p>
-<p>価格: <%= @card_post.price %>円</p>
-<p>メモ: <%= @card_post.memo %></p>
+  <p>店舗: <%= @card_post.store_name %></p>
+  <p>価格: <%= @card_post.price %>円</p>
+  <p>メモ: <%= @card_post.memo %></p>
 
-<% if @card_post.image.attached? %>
-  <%= image_tag @card_post.image.variant(resize_to_limit: [400, 400]) %>
-<% end %>
+  <% if @card_post.image.attached? %>
+    <div class="card-post-image">
+      <%= image_tag @card_post.image.variant(resize_to_limit: [300, 300]) %>
+    </div>
+  <% end %>
 
-<%= link_to "一覧に戻る", card_posts_path, class: "btn btn-secondary" %>
+  <div class="card-post-actions">
+    <%= link_to "一覧に戻る", card_posts_path, class: "btn" %>
+
+    <%# 投稿者本人なら編集・削除ボタンも表示 %>
+    <% if current_user == @card_post.user %>
+      <%= link_to "編集", edit_card_post_path(@card_post), class: "btn" %>
+
+      <%= button_to "削除", card_post_path(@card_post),
+              method: :delete,
+              form: { class: "inline" },
+              class: "btn btn-delete",
+              data: { confirm: "本当に削除しますか？" } %>
+    <% end %>
+
+  </div>
+</div>
