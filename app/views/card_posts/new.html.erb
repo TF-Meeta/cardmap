@@ -1,5 +1,5 @@
 <div class="card-form-container">
-  <h1>カード情報を投稿</h1>
+  <h1>アイテム情報を投稿</h1>
 
   <%= form_with model: @card_post, local: true do |f| %>
 
@@ -16,17 +16,17 @@
 
     <div class="form-group">
       <%= f.label :store_name, "店舗名" %>
-      <%= f.text_field :store_name, placeholder: "例：カードショップ東京" %>
+      <%= f.text_field :store_name, placeholder: "例：駿河屋 博多マルイ店" %>
     </div>
 
     <div class="form-group">
-      <%= f.label :card_name, "カード名" %>
+      <%= f.label :card_name, "アイテム名" %>
       <%= f.text_field :card_name, placeholder: "例：青眼の白龍" %>
     </div>
 
     <div class="form-group">
       <%= f.label :price, "価格（円）" %>
-      <%= f.number_field :price, placeholder: "例：1200", min: 1 %>
+      <%= f.number_field :price, placeholder: "例：12000", min: 1 %>
     </div>
 
     <div class="form-group">
